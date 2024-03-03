@@ -8,4 +8,7 @@ jobs:
             - run: node --version
             - run: npm --version
             - uses: actions/checkout@v4
+              with:
+                path: server
             - run: node app.js
+              working-directory: server
