@@ -9,6 +9,7 @@ const BoardSchema = new mongoose.Schema(
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
+      unique:true,
     },
     members: {
       type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
