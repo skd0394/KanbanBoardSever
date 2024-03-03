@@ -7,6 +7,18 @@ const port = process.env.PORT;
 const session = require("express-session");
 const passport = require("passport");
 const router = require("./Routes/index");
+import { rateLimit } from "express-rate-limit";
+
+const limiter = rateLimit({
+  windowMs: 30 * 60 * 1000, 
+  limit: 1000, 
+  standardHeaders: "draft-7", 
+  legacyHeaders: false, 
+ 
+});
+
+app.use(limiter);
+
 
 app.use(
   cors({
