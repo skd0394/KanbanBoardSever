@@ -1,14 +1,36 @@
 #This is a YAML file
+# on: push
+# jobs:
+#   first-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: node --version
+#       - run: npm --version
+#       - uses: actions/checkout@v4
+#         with:
+#           path: server
+#       - run: node app.js
+#         working-directory: server
 
 on: push
 jobs:
-    first-job:
-        runs-on : ubuntu-latest
-        steps :
-            - run: node --version
-            - run: npm --version
-            - uses: actions/checkout@v4
-              with:
-                path: server
-            - run: node app.js
-              working-directory: server
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Node.js and npm versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: |
+          cd server
+          npm install
+
+      - name: Run Node.js
+        run: |
+          cd server
+          node app.js
